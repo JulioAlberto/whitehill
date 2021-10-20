@@ -1,0 +1,104 @@
+/* Enter your custom styles here */
+
+
+/*.sapMListTblCell.cellBorderRight {*/
+
+
+/*    border-right: 1px solid lightgray;*/
+
+
+/*}*/
+
+
+/*.sapMListTblCell.cellBorderLeft {*/
+
+
+/*    border-left: 1px solid lightgray;*/
+
+
+/*}*/
+
+
+/*.sapMListTblCell.cellBorderTop {*/
+
+
+/*    border-top: 1px solid lightgray;*/
+
+
+/*}*/
+
+
+/*.sapMListTblCell.noCellBorderTop {*/
+
+
+/*    border-top: 0px solid lightgray;*/
+
+
+/*}*/
+
+
+/*.sapMListTblCell.noCellBorderRight {*/
+
+
+/*    border-right: 0px solid lightgray;*/
+
+
+/*}*/
+
+
+/*.sapMListTblCell.noCellBorderLeft {*/
+
+
+/*    border-left: 0px solid lightgray;*/
+
+
+/*}*/
+
+
+/*.sapMListTblCell.noBorderCell {*/
+
+
+/*    border-top: 0px solid lightgray;*/
+
+
+/*    border-left: 0px solid lightgray;*/
+
+
+/*    border-right: 0px solid lightgray;*/
+
+
+/*    background-color: rgba(255, 255, 255, 0.5) !important;*/
+
+
+/*}*/
+
+
+/*.sapMListTblCell.noBorderButRightCell {*/
+
+
+/*    border-top: 0px solid lightgray;*/
+
+
+/*    border-left: 0px solid lightgray;*/
+
+
+/*    background-color: rgba(255, 255, 255, 0.5) !important;*/
+
+
+/*}*/
+
+
+/*.sapMListTblCell.headerBackground {*/
+
+
+/*    background-color: whitesmoke;*/
+
+
+/* rgb(247,247,247) */
+
+
+/*}*/
+
+.buttonSpacing {
+    padding 0 4px 0 4px !important;
+}

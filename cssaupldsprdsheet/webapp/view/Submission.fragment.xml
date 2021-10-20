@@ -1,0 +1,349 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:t="sap.ui.table"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<VBox>
+		<ScrollContainer height="100%" width="100%" horizontal="true" vertical="true" focusable="true">
+			<l:VerticalLayout width="100%" class="gridWrapper">
+				<l:Grid containerQuery="true" defaultSpan="L6 M6 S6">
+					<!--<html:div class="exampleDiv"/>-->
+					<!--<html:div class="exampleDiv"/>-->
+					<!--<HBox class="sapUiMediumMarginBottom" width="100%">-->
+					<VBox class="sapUiMediumMarginTop" id="ActiveErrors">
+						<Label text="{i18n>Issues} {contractlist>/CurrentIssueCount} {i18n>On} {contractlist>/CurrentIssueLines} {i18n>Lines} " design="Bold"
+							class="sapUiTinyMarginBottom" visible="{= !${contractlist>/ReadyForSubmit}}"></Label>
+						<Label text="{i18n>Correct_Issues}" visible="{= !${contractlist>/ReadyForSubmit}}"></Label>
+						<!--</VBox>-->
+						<!--<VBox class="sapUiMediumMarginTop" id="NoErrors" visible="{= !!${contractlist>/ReadyForSubmit}}">-->
+						<Label id="SubmitReport1" text="{i18n>Submit_Report}" design="Bold" class="sapUiTinyMarginBottom"
+							visible="{= !!${contractlist>/ReadyForSubmit}}"></Label>
+						<Label id="SubmitReport2" text="{contractlist>/CurrentRowCount} {i18n>Been_reported}" visible="{= !!${contractlist>/ReadyForSubmit}}"></Label>
+					</VBox>
+					<HBox justifyContent="End">
+						<Button id="MessageButton" text="{i18n>ShowMessages}" class="sapUiMediumMarginTop sapUiSmallMarginEnd" width="12rem" type="Emphasized"
+							press="onAllMessages" visible="{= ${contractlist>/CurrentIssueCount} > 0}"/>
+						<Button text="{i18n>Go_Back}" class="sapUiMediumMarginTop" width="7rem" type="Emphasized" press="onGoBack"
+							visible="{= !${contractlist>/ReadyForSubmit}}"/>
+						<Button id="SubmitButton" text="{i18n>Submit_Report_Now}" class="sapUiMediumMarginTop sapUiSmallMarginEnd" width="11rem" type="Emphasized"
+							press="onSubmitReport" visible="{= !!${contractlist>/ReadyForSubmit} &amp;&amp; !!${contractlist>/CanSubmit} }"/>
+						<Button id="SaveButton" text="{i18n>Save}" class="sapUiMediumMarginTop" width="11rem" type="Emphasized" press="onSaveReport"
+							visible="{= !!${contractlist>/ReadyForSubmit} &amp;&amp; !!${contractlist>/CanSave} }"/>
+					</HBox>
+					<!--</HBox>-->
+				</l:Grid>
+				<t:Table id="table1" noData="{i18n>submitInfo}" rows="{ path: 'contractlist>/ValidatedData' }" visibleRowCount="12" selectionMode="None">
+					<t:columns>
+						<t:Column hAlign="Center" width="{columns>/0/width}">
+							<VBox>
+								<Label text="{columns>/0/letter}"/>
+								<Label text="{columns>/0/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<Link id="cellM" text="{contractlist>message}" subtle="true" press="handleLinkPress" custom:seqno="{contractlist>seqno}"
+									tooltip="{contractlist>message}"/>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="{columns>/1/width}">
+							<VBox>
+								<Label text="{columns>/1/letter}"/>
+								<Label text="{columns>/1/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<core:Icon src="{contractlist>icon}" color="{contractlist>iconColour}"/>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="{columns>/2/width}">
+							<VBox>
+								<Label text="{columns>/2/letter}"/>
+								<Label text="{columns>/2/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<Text id="cell0" text="{contractlist>seqno}"/>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="{columns>/3/width}">
+							<VBox>
+								<Label text="{columns>/3/letter}"/>
+								<Label text="{columns>/3/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<Text id="cell1" text="{contractlist>ebeln}"/>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="{columns>/4/width}">
+							<VBox>
+								<Label text="{columns>/4/letter}"/>
+								<Label text="{columns>/4/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<Text id="cellG" text="{contractlist>bolno}"/>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="{columns>/5/width}">
+							<VBox>
+								<Label text="{columns>/5/letter}"/>
+								<Label text="{columns>/5/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<Text id="cell2" text="{contractlist>bwtar}"/>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="{columns>/6/width}">
+							<VBox>
+								<Label text="{columns>/6/letter}"/>
+								<Label text="{columns>/6/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<Text id="cell3" text="{contractlist>bulkBol}"/>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="{columns>/7/width}">
+							<VBox>
+								<Label text="{columns>/7/letter}"/>
+								<Label text="{columns>/7/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<Text id="cell4" text="{contractlist>driver}"/>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="{columns>/8/width}">
+							<VBox>
+								<Label text="{columns>/8/letter}"/>
+								<Label text="{columns>/8/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<Text id="cell5" text="{contractlist>pickupDate}"/>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="{columns>/9/width}">
+							<VBox>
+								<Label text="{columns>/9/letter}"/>
+								<Label text="{columns>/9/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<Text id="cell6" text="{contractlist>deliveryDate}"/>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="{columns>/10/width}">
+							<VBox>
+								<Label text="{columns>/10/letter}"/>
+								<Label text="{columns>/10/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<Text id="cell7" text="{contractlist>csiteName}"/>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="{columns>/11/width}">
+							<VBox>
+								<Label text="{columns>/11/letter}"/>
+								<Label text="{columns>/11/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<Text id="cell8" text="{contractlist>csitePostal}"/>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="{columns>/12/width}">
+							<VBox>
+								<Label text="{columns>/12/letter}"/>
+								<Label text="{columns>/12/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<Text id="cell9" text="{contractlist>psiteName}"/>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="{columns>/13/width}">
+							<VBox>
+								<Label text="{columns>/13/letter}"/>
+								<Label text="{columns>/13/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<Text id="cellA" text="{contractlist>psitePostal}"/>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="{columns>/14/width}">
+							<VBox>
+								<Label text="{columns>/14/letter}"/>
+								<Label text="{columns>/14/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<Text id="cellB" text="{contractlist>matcat}"/>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="{columns>/15/width}">
+							<VBox>
+								<Label text="{columns>/15/letter}"/>
+								<Label text="{columns>/15/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<Text id="cellC" text="{contractlist>containerType}"/>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="{columns>/16/width}">
+							<VBox>
+								<Label text="{columns>/16/letter}"/>
+								<Label text="{columns>/16/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<Text id="cellD" text="{contractlist>containerId}"/>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="{columns>/17/width}">
+							<VBox>
+								<Label text="{columns>/17/letter}"/>
+								<Label text="{columns>/17/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<Text id="cellE" text="{contractlist>quantity}"/>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="{columns>/18/width}">
+							<VBox>
+								<Label text="{columns>/18/letter}"/>
+								<Label text="{columns>/18/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<Text id="cellF" text="{contractlist>weight}"/>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="{columns>/19/width}"  visible="{= ${contractlist>/DispCodeRequired} === true }">
+							<VBox>
+								<Label text="{columns>/19/letter}"/>
+								<Label text="{columns>/19/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<Text id="cellH" text="{contractlist>bsgru}" visible="{= ${contractlist>/DispCodeRequired} === true }"/>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="{columns>/20/width}">
+							<VBox>
+								<Label text="{columns>/20/letter}"/>
+								<Label text="{columns>/20/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<Text id="cellR" text="{contractlist>zzVehicleId}"/>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="{columns>/21/width}">
+							<VBox>
+								<Label text="{columns>/21/letter}"/>
+								<Label text="{columns>/21/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<Text id="cellS" text="{contractlist>zzVehicleType}"/>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="{columns>/22/width}">
+							<VBox>
+								<Label text="{columns>/22/letter}"/>
+								<Label text="{columns>/22/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<Text id="cellT" text="{contractlist>zzRouteNumber}"/>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="{columns>/23/width}">
+							<VBox>
+								<Label text="{columns>/23/letter}"/>
+								<Label text="{columns>/23/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<Text id="cellU" text="{contractlist>zzDriverName}"/>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="{columns>/24/width}">
+							<VBox>
+								<Label text="{columns>/24/letter}"/>
+								<Label text="{columns>/24/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<Text id="cellV" text="{contractlist>zzArrivalTime}"/>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="{columns>/25/width}">
+							<VBox>
+								<Label text="{columns>/25/letter}"/>
+								<Label text="{columns>/25/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<Text id="cellW" text="{contractlist>zzArrivalDate}"/>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="{columns>/26/width}">
+							<VBox>
+								<Label text="{columns>/26/letter}"/>
+								<Label text="{columns>/26/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<Text id="cellX" text="{contractlist>zzEanU}"/>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="{columns>/27/width}">
+							<VBox>
+								<Label text="{columns>/27/letter}"/>
+								<Label text="{columns>/27/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<Text id="cellY" text="{contractlist>zzTbd1}"/>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="{columns>/28/width}">
+							<VBox>
+								<Label text="{columns>/28/letter}"/>
+								<Label text="{columns>/28/header}" design="Bold"/>
+							</VBox>
+							<t:template>
+								<Text id="cellZ" text="{contractlist>zzTbd2}"/>
+							</t:template>
+						</t:Column>
+						<!--<t:Column hAlign="Center" width="{columns>/20/width}">-->
+						<!--	<VBox>-->
+						<!--		<Label text="{columns>/20/letter}"/>-->
+						<!--		<Label text="{columns>/20/header}" design="Bold"/>-->
+						<!--	</VBox>-->
+						<!--	<t:template>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+					</t:columns>
+				</t:Table>
+				<!--<Table id="table0" noDataText="{i18n>submitInfo}" columns="{ path: 'columns>/' }" items="{ path: 'contractlist>/ValidatedData' }">-->
+				<!--	<items>-->
+				<!--		<ColumnListItem id="item0" type="Active">-->
+				<!--			<cells>-->
+				<!--				<Link id="cellM" text="{contractlist>message}" subtle="true" press="handleLinkPress" custom:seqno="{contractlist>seqno}"-->
+				<!--					tooltip="{contractlist>message}"/>-->
+				<!--				<core:Icon src="{contractlist>icon}" color="{contractlist>iconColour}"/>-->
+				<!--				<Text id="cell0" text="{contractlist>seqno}"/>-->
+				<!--				<Text id="cell1" text="{contractlist>ebeln}"/>-->
+				<!--				<Text id="cellG" text="{contractlist>bolno}"/>-->
+				<!--				<Text id="cell2" text="{contractlist>bwtar}"/>-->
+				<!--				<Text id="cell3" text="{contractlist>bulkBol}"/>-->
+				<!--				<Text id="cell4" text="{contractlist>driver}"/>-->
+				<!--				<Text id="cell5" text="{contractlist>pickupDate}"/>-->
+				<!--				<Text id="cell6" text="{contractlist>deliveryDate}"/>-->
+				<!--				<Text id="cell7" text="{contractlist>csiteName}"/>-->
+				<!--				<Text id="cell8" text="{contractlist>csitePostal}"/>-->
+				<!--				<Text id="cell9" text="{contractlist>psiteName}"/>-->
+				<!--				<Text id="cellA" text="{contractlist>psitePostal}"/>-->
+				<!--				<Text id="cellB" text="{contractlist>matcat}"/>-->
+				<!--				<Text id="cellC" text="{contractlist>containerType}"/>-->
+				<!--				<Text id="cellD" text="{contractlist>containerId}"/>-->
+				<!--				<Text id="cellE" text="{contractlist>quantity}"/>-->
+				<!--				<Text id="cellF" text="{contractlist>weight}"/>-->
+				<!--				<Text id="cellH" text="{contractlist>bsgru}" visible="{= ${contractlist>/DispCodeRequired} === true }"/>-->
+				<!--			</cells>-->
+				<!--		</ColumnListItem>-->
+				<!--	</items>-->
+				<!--	<columns>-->
+				<!--		<Column width="{columns>width}" styleClass="{columns>styleClass}" hAlign="Center">-->
+				<!--			<header>-->
+				<!--				<VBox>-->
+				<!--					<Label text="{columns>letter}"/>-->
+				<!--					<Label text="{columns>header}" design="Bold"/>-->
+				<!--				</VBox>-->
+				<!--			</header>-->
+				<!--		</Column>-->
+				<!--	</columns>-->
+				<!--</Table>-->
+			</l:VerticalLayout>
+		</ScrollContainer>
+	</VBox>
+</core:FragmentDefinition>

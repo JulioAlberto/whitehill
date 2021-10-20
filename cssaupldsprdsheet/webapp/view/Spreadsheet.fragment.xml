@@ -1,0 +1,30 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<VBox>
+		<Label text="{contractlist>/CurrentContract/descr} ({contractlist>/CurrentContract/ebeln})"/>
+		<Label text="{i18n>needTemplate}" design="Bold" class="sapUiMediumMarginTop sapUiSmallMarginBottom"/>
+		<HBox>
+			<core:Icon src="sap-icon://message-information" class="sapUiTinyMarginEnd"/>
+			<Label text="{i18n>uploadInfo1}" class="sapUiSmallMarginBottom"/>
+		</HBox>
+		<Button id="downloadButton" press="onDownloadTemplate" text="{i18n>download}" width="12em" class="sapUiMediumMarginBottom"/>
+		<Label text="{i18n>uploadSprdsht}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
+		<HBox>
+			<core:Icon src="sap-icon://message-information" class="sapUiTinyMarginEnd"/>
+			<Label text="{i18n>uploadInfo2}" class="sapUiSmallMarginBottom"/>
+		</HBox>
+		<UploadCollection id="UploadCollection" maximumFilenameLength="255" maximumFileSize="3000000" multiple="false" change="onChange"
+			items="{ path: '/items', templateShareable: false }" numberOfAttachmentsText="" fileDeleted="onFileDeleted" fileType="txt"
+			filenameLengthExceed="onFilenameLengthExceed" fileSizeExceed="onFileSizeExceed" typeMissmatch="onTypeMissmatch"
+			uploadComplete="onUploadComplete" beforeUploadStarts="onBeforeUploadStarts" instantUpload="false" selectionChange="onFileDeleted">
+			<toolbar></toolbar>
+			<items>
+				<UploadCollectionItem documentId="{documentId}" fileName="{fileName}" mimeType="{mimeType}" thumbnailUrl="{thumbnailUrl}" url="{url}"
+					enableEdit="false" enableDelete="false" visibleDelete="false" visibleEdit="false" selected="true"></UploadCollectionItem>
+			</items>
+		</UploadCollection>
+		<Button id="continueButton" type="Emphasized" press="onContinue" text="{i18n>continue}" width="12em" class="sapUiLargeMarginBottom"
+			enabled="{= ${contractlist>/FileCount} > 0}"/>
+		<!--<Button id="resendButton" type="Emphasized" press="onResend" text="Temp Resend" width="12em" class="sapUiLargeMarginBottom"/>-->
+	</VBox>
+</core:FragmentDefinition>

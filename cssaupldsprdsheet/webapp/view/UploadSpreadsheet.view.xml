@@ -1,0 +1,31 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="cssa.sp.cssaupldsprdsheet.controller.UploadSpreadsheet" xmlns:l="sap.ui.layout"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:core="sap.ui.core" xmlns:f="sap.f" displayBlock="true" xmlns="sap.m">
+	<App id="idAppControl">
+		<pages>
+			<Page title="{i18n>title}" id="page" showHeader="false">
+				<content>
+					<Wizard id="UploadSpreadsheetWizard" showNextButton="false" complete="wizardCompletedHandler">
+						<WizardStep title="{i18n>Choose_a_Contract}" id="ChooseContract" validated="true" activate="onActivateStep1">
+							<core:Fragment fragmentName="cssa.sp.cssaupldsprdsheet.view.ChooseContract" type="XML"/>
+						</WizardStep>
+						<WizardStep title="{i18n>Spreadsheet}" id="Spreadsheet" validated="false" activate="onActivateStep2">
+							<core:Fragment fragmentName="cssa.sp.cssaupldsprdsheet.view.Spreadsheet" type="XML"/>
+						</WizardStep>
+						<WizardStep title="{i18n>Report_Submission}" id="SubmitReport" validated="true" activate="onActivateStep3">
+							<core:Fragment fragmentName="cssa.sp.cssaupldsprdsheet.view.Submission" type="XML"/>
+						</WizardStep>
+						<WizardStep title="{i18n>Confirmation}" id="Confirmation" validated="true" activate="onActivateStep4">
+							<core:Fragment fragmentName="cssa.sp.cssaupldsprdsheet.view.Confirmation" type="XML"/>
+						</WizardStep>
+					</Wizard>
+				</content>
+				<footer>
+					<OverflowToolbar>
+						<ToolbarSpacer/>
+						<Button text="Cancel" press="handleWizardCancel"/>
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<VBox alignItems="Start" justifyContent="Start" width="100rem">
+		<Title text="{i18n>chooseContractReport}" titleStyle="h3" class="sapUiTinyMarginBottom"/>
+		<SearchField id="searchContract" width="30em" placeholder="{i18n>phSearchContract}" enableSuggestions="true" search="onSearch"
+			suggest="onSuggestContract" suggestionItems="{ path: 'contractlist>/ContractData/dbiContracts', sorter: { path: 'descr' } }">
+			<suggestionItems>
+				<SuggestionItem text="{contractlist>descr}" key="{contractlist>ebeln}"/>
+			</suggestionItems>
+		</SearchField>
+	</VBox>
+	<Table id="contractTable" width="100%" inset="false"
+		items="{ path: 'contractlist>/ContractData/dbiContracts', sorter: { path: 'descr', descending: false } }" growing="true"
+		growingScrollToLoad="false" updateFinished="onUpdateFinished">
+		<columns>
+			<Column id="projectDef" width="95%"></Column>
+			<Column id="projectDesc" width="13rem" hAlign="Left"></Column>
+		</columns>
+		<items>
+			<ColumnListItem type="Active" press="onContractSelected" custom:contractEntry="{contractlist>ebeln}">
+				<cells>
+					<!--<FormattedText htmlText="&lt;strong&gt;{contractlist>descr}&lt;/strong&gt;"/>-->
+					<Text text="{contractlist>descr}"/>
+					<Text text="({contractlist>ebeln})"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

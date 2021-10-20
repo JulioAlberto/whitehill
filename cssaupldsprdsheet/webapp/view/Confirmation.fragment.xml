@@ -1,0 +1,59 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<VBox>
+		<Label text="{i18n>ThankYou}" class="sapUiTinyMarginBottom"></Label>
+		<Label text="{i18n>ReportSubmitted}" design="Bold" class="sapUiTinyMarginBottom"></Label>
+		<!-- Display the table of deliveries if more than one delivery is logged -->
+		<HBox visible="{= ${contractlist>/Deliveries}.length > 1}">
+			<!--<Label text="{i18n>documentNo}" visible="{= ${contractlist>/Deliveries}.length > 1}"/>-->
+			<Table id="deliveries" width="auto" class="sapUiResponsiveMargin" items="{contractlist>/Deliveries}"
+				visible="{= ${contractlist>/Deliveries}.length > 1}">
+				<columns>
+					<Column hAlign="Right" width="15rem"></Column>
+					<Column hAlign="Left"></Column>
+					<Column hAlign="Left"></Column>
+					<Column hAlign="Left"></Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{i18n>ClaimNumber}"/>
+							<Text text="{contractlist>vbeln}"/>
+							<Button text="{i18n>DownloadPDFSummary}" width="13rem" type="Default" press="onDownloadPDFClaim" custom:data="{contractlist>vbeln}"/>
+							<Button text="{i18n>DownloadXLSSummary}" width="13rem" type="Default" press="onDownloadXLSClaim" custom:data="{contractlist>vbeln}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</HBox>
+		<Table id="submitTable" width="auto" class="sapUiResponsiveMargin" items="{contractlist>/ConfirmationResults}"
+			updateFinished="onUpdateFinished">
+			<columns>
+				<Column hAlign="Right" width="15rem"></Column>
+				<Column hAlign="Left"></Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{contractlist>desc}"/>
+						<Text text="{contractlist>value}"/>
+						<!-- ekgrp-->
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<HBox>
+			<Button text="{i18n>DownloadPDFSummary}" width="13rem" type="Default" press="onDownloadPDFClaim" class="sapUiTinyMarginEnd"
+				visible="{= ${contractlist>/Deliveries}.length &lt; 2}"/>
+			<Button text="{i18n>DownloadXLSSummary}" width="13rem" type="Default" press="onDownloadXLSClaim"
+				visible="{= ${contractlist>/Deliveries}.length &lt; 2}"/>
+		</HBox>
+		<Label text="{i18n>WhatsNext}" design="Bold" class="sapUiMediumMarginTop sapUiTinyMarginBottom"></Label>
+		<Label text="{i18n>ContinueOrReturnHome}" class="sapUiTinyMarginBottom"></Label>
+		<!--class="sapUiMediumMarginTop" -->
+		<HBox>
+			<Button text="{i18n>ReportOnAnother}" width="13rem" type="Default" press="onReportAnother" class="sapUiTinyMarginEnd"/>
+			<Button text="{i18n>ReturnHome}" width="13rem" type="Default" enabled="true" press="onReturnHome"/>
+		</HBox>
+	</VBox>
+</core:FragmentDefinition>
