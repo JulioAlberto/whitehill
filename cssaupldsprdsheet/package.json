@@ -5,7 +5,7 @@
   "private": true,
   "devDependencies": {
     "grunt": "^1.4.1",
-    "grunt-openui5": "^0.16.0" 
+    "grunt-openui5": "^0.16.0"
   },
   "scripts": {
     "build": "ui5 build --include-task=generateManifestBundle generateCachebusterInfo"
